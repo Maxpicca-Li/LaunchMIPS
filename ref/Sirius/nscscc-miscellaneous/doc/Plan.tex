@@ -1,0 +1,102 @@
+% !!! 如果要编译此文件，请确定已经安装了 elegantnote。 对于 texlive 用户，可以使用
+% tlmgr install elegantnote
+%进行安装
+\documentclass[blue,normal,cn]{elegantnote}
+
+\usepackage{xcolor}
+\newcommand\tblentry[2]{
+	\parbox[b]{9em}{\hfill{\color{cyan}\bfseries\sffamily #1}~$\cdots\cdots$~}\makebox[0pt][c]{$\bullet$}\vrule\quad \parbox[c]{24em}{\vspace{7pt}\color{red!40!black!80}\raggedright\sffamily #2\\[7pt]}\\[-3pt]}
+
+
+
+\title{概览}
+\version{0.01}
+\date{\today}
+
+\begin{document}
+	
+\maketitle
+
+本项目旨在实现 NSCSCC 2019 技术方案上要求的 MIPS 微系统。最终结果应为可以支持 MIPS32 指令集的子集并能够运行 Linux 操作系统。本文档用以明确微系统中需要实现的主要功能，同时明确时间分配，以保证在微系统的实现过程中保持在正确的方向。随着微系统的设计与实现，该文档也会进行相应的修改。
+\section{比赛信息}
+\subsection{比赛内容}
+初赛的比赛内容为在龙芯提供的体系结构教学实验箱上开发基于 MIPS 基准指令集的 MIPS 微系统。其最低要求如下：
+\begin{enumerate}[1)]
+	\item 指令存储器及数据存储器不应小于 8KB。
+	\item FPGA 内部集成一个计数器(用于性能测试)。
+	\item FPGA 需要支持 7 段数码管显示(用于性能测试)。
+	\item 实现的 CPU 得能通过接口与各 I/O 设备互联通信。
+\end{enumerate}
+决赛的比赛内容如下：
+\begin{enumerate}[1)]
+	\item 性能测试，通过运行基本测试测量 CPU 的性能。
+	\item 系统展示。运行操作系统或者应用程序展示位系统的实际效果。
+	\item 实现自定义指令。在规定的时间内实现自定义指令，只需测试是否正确实现。
+	\item 答辩。汇报设计思路并回答问题。
+\end{enumerate}
+
+\subsection{比赛时间安排}
+\begin{table}[!htbp]
+	\centering
+	\begin{tabular}{ll}
+		\hline
+		\multicolumn{2}{c}{时间安排} \\ \hline
+		2019.5.1       & 比赛开始      \\
+		2019.8.5       & 初赛线上提交结束  \\
+		2019.8.12      & 公布决赛入围名单  \\
+		2019.8.19-21   & 总决赛       \\ \hline
+	\end{tabular}
+\end{table}
+
+可以注意到，初赛结束到决赛开始仅仅有两周的时间，因此在初赛结束之前就要准备好决赛需要展示的内容。（操作系统，应用程序等）
+\subsection{比赛相关文件}
+\begin{enumerate}[1.]
+	\item \href{http://www.nscscc.org}{比赛官网}
+	\item \href{http://www.nscscc.org/uploads/soft/190318/\%E7\%AC\%AC\%E4\%B8\%89\%E5\%B1\%8A\%E7\%B3\%BB\%E7\%BB\%9F\%E8\%83\%BD\%E5\%8A\%9B\%E5\%9F\%B9\%E5\%85\%BB\%E5\%A4\%A7\%E8\%B5\%9B\%E7\%AB\%A0\%E7\%A8\%8B-\%E7\%9B\%96\%E7\%AB\%A0\%E7\%89\%88.pdf} {第三届系统能力培养大赛章程}
+	\item \href{http://www.nscscc.org/uploads/soft/190306/\%E6\%8A\%80\%E6\%9C\%AF\%E6\%96\%B9\%E6\%A1\%882019_V1.pdf}{比赛技术方案}
+	\item \href{http://www.nscscc.org/uploads/soft/170318/1-1F31P20H9.docx}{器材介绍}
+\end{enumerate}
+\section{项目概览}
+整个项目可以分为两部分：基于 MIPS 的微系统(硬件)以及运行于其上的 Linux 操作系统(软件)。其中微系统又可以分为两部分：CPU 以及外围设备。使用的语言为 Verilog/SystemVerilog，开发环境为 Xilinx Vivado 2018.3。以下将分节叙述各个部分的概览。
+\subsection{CPU}
+该部分的目标为实现一个四发射超标量 CPU，同时使用乱序执行技术以提高流水线的利用率。
+
+\textbf{指令系统}\ 比赛要求实现的为 MIPS32 的子集，为了方便后续操作系统的移植，CPU 支持除去浮点数指令，Branch-likely 指令外去的全部 MIPS32r1 指令。详细内容见附录。
+
+\textbf{流水线结构}\ 目前的目标是实现包括\textbf{取值}，\textbf{译码}，\textbf{寄存器重命名}，\textbf{发射}，\textbf{读寄存器}，\textbf{执行}，\textbf{提交}等在内的 7 级流水线，其中执行部分可能运行不止一拍。
+
+\textbf{异常处理}\ 能够支持精确异常。
+
+更加详细的部分会在 CPU 的设计文档中进行说明。
+
+\subsection{外设}
+除去 FPGA 外，体系结构教学实验箱上有 DDR， SPI FLASH，VGA 接口等多种外设。比赛开始后比赛官网会提供其中部分设备的 IP 核以及编程规范，这部分的目标是尽可能多的实现对外设的控制，
+
+除去实现对外设的控制之外，该部分还需要实现功能测试/性能测试要求的 AHB-Lite 接口与 CPU 模块的对接。
+
+\subsection{操作系统}
+完成 Linux 内核的移植并添加必要的驱动以确保 Linux 系统能够在试验箱上运行。
+
+\section{时间表}
+以下的时间表为各个部分预计的完成时间，作为实现时的参考，实际完成时间比时间表上的时间晚很多的话可能会影响整体进度。
+
+\begin{table}[!htbp]
+	\caption{时间表}
+	\centering
+	\begin{minipage}[t]{.9\linewidth}
+		\color{gray}
+		\rule{\linewidth}{1pt}
+		\tblentry{2019.05.01}{开始发放器材}
+		\tblentry{2019.05.26}{实现完整的数据通路}
+		\tblentry{2019.05.31}{实现 CP0 以及 TLB}
+		\tblentry{2019.06.04}{指令添加完毕}
+		\tblentry{2019.06.09}{缓存添加完毕}
+		\tblentry{2019.06.28}{CPU、外设基本实现完毕，可以通过功能测试}
+		\tblentry{2019.07.12}{操作系统可以在实验箱上运行}
+		\tblentry{2019.08.04}{CPU性能优化结束，文档补充完毕，提交初赛作品}
+		\bigskip
+		\rule{\linewidth}{1pt}%
+	\end{minipage}%
+\end{table}
+
+\end{document}

@@ -1,0 +1,46 @@
+#! /usr/bin/perl
+# mipsel-linux-asm2memh: convert MIPS asm file to
+# make them fit for verilog's readmemh function
+
+$file = shift;
+$tmpfile = "a.out.$$";
+system("mipsel-linux-gnu-as -o $tmpfile $file");
+
+unless (-e $tmpfile) {
+    exit 1;
+}
+open TEXT, "mipsel-linux-gnu-objdump -s $tmpfile -j .text |";
+
+$hdigit = '[\da-fA-F]';
+
+while (<TEXT>) {
+    chop;
+    last if ($_ eq 'Contents of section .text:');
+}
+for ($count = 0; <TEXT>; $count++) {
+    ($data) = /^ $hdigit{4,} (($hdigit{8} ){1,4})/;
+    @words = split(' ', $data);
+    
+    print revert_byte($words[0]), "\n";
+    print revert_byte($words[1]), "\n";
+    print revert_byte($words[2]), "\n";
+    print revert_byte($words[3]), "\n";
+}
+
+while( $count < 256 ) {
+    print "00000000", "\n";
+    print "00000000", "\n";
+    print "00000000", "\n";
+    print "00000000", "\n";
+    $count++;
+}
+
+close TEXT;
+unlink $tmpfile;
+
+# Convert little endian bytes into a word.
+sub revert_byte {
+    my $w = shift;
+    my @chars = split(//, $w);
+    return join('', @chars[6..7], @chars[4..5], @chars[2..3], @chars[0..1]);
+}
