@@ -32,4 +32,4 @@
 │          regfile.sv           通用寄存器堆
 │          
 └─testbench
-        mycpu_tb.v              测试文件，修改测试的clk边触出发
+        mycpu_tb.v              测试文件，修改测试的clk边沿触发
