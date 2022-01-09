@@ -18,10 +18,10 @@
 
 ## TODO
 
-- [ ] 实现顺序双发射的CPU逻辑，完成功能仿真（2021.01.01~2021.01.07）
+- [x] 实现顺序双发射的CPU逻辑，完成功能仿真（2021.01.01~2021.01.07）
 - [ ] 优化cache，添加axi-burst接口，完成性能仿真（2021.01）
 - [ ] 其他
-  - [ ] 系统测试（重难点）
+  - [ ] 系统测试
   - [ ] CPU提频
 
 ## 文档学习
@@ -30,5 +30,7 @@
 
 ## 参考资料
 
-- [name1e5s/Sirius: Asymmetric dual issue in-order microprocessor. (github.com)](https://github.com/name1e5s/Sirius)
-- [trivialmips/nontrivial-mips: NonTrivial-MIPS is a synthesizable superscalar MIPS processor with branch prediction and FPU support, and it is capable of booting linux. (github.com)](https://github.com/trivialmips/nontrivial-mips)
+- 2019NSCSCC[trivialmips/nontrivial-mips: NonTrivial-MIPS is a synthesizable superscalar MIPS processor with branch prediction and FPU support, and it is capable of booting linux. (github.com)](https://github.com/trivialmips/nontrivial-mips)
+- 2019NSCSCC [name1e5s/Sirius: Asymmetric dual issue in-order microprocessor. (github.com)](https://github.com/name1e5s/Sirius)
+- 2020NSCSCC [SocialistDalao/UltraMIPS_NSCSCC: UltraMIPS SoC composed of dual-issue cpu, pipeline Cache and systematic peripheral. (github.com)](https://github.com/SocialistDalao/UltraMIPS_NSCSCC)
+
