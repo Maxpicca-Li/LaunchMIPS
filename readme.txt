@@ -1,35 +1,35 @@
-## ÎÄ¼şÄ¿Â¼ËµÃ÷
+## æ–‡ä»¶ç›®å½•è¯´æ˜
 2021-CquCOlab-src
-©¦  inst32_inst64.py             ½«32bitµÄinst_sram.coe×ªÎª64bitµÄinst_sram_64.coe
-|  inst_sram_64.xci             inst_sram_64ÅäÖÃ
-©¦  readme.txt                   ÎÄ¼şÄ¿Â¼ËµÃ÷
-©¦  
-©À©¤rtl
-©¦  ©¦  soc_lite_top.v            ¶¥²ãÎÄ¼ş£¬ĞŞ¸Äcpu_inst_wen¡¢cpu_inst_wdata¡¢cpu_inst_rdataµÄÎ»¿í
-©¦  ©¦  
-©¦  ©¸©¤myCPU                      myCPUÔ´´úÂëÎÄ¼ş
-©¦          alu_master.v         master·ÖÖ§µÄalu
-©¦          alu_slave.sv         slave·ÖÖ§µÄalu
-©¦          branch_judge.sv      ·ÖÖ§ÅĞ¶ÏÂß¼­
-©¦          cp0_reg.sv           CP0¼Ä´æÆ÷
-©¦          datapath.v           Êı¾İÍ¨Â·
-©¦          decoder.sv           ÒëÂë
-©¦          defines.vh           ºê¶¨Òå
-©¦          div.v                ³ı·¨Ä£¿é
-©¦          exception.sv         Òì³£ÒòËØ½âÎö
-©¦          flopenr.v            ´¥·¢Æ÷
-©¦          forward_mux.sv       Ç°ÍÆÑ¡Ôñ
-©¦          forward_top.sv       Ç°ÍÆ¶¥²ã
-©¦          hazard.v             ¿ØÖÆÃ°ÏÕ´¦Àí
-©¦          hilo_reg.v           hilo¼Ä´æÆ÷
-©¦          instdec.v            Ö¸Áîascii±àÂë
-©¦          inst_diff.sv         2ÌõÖ¸Áî¶ÁÈ¡¿ØÖÆ
-©¦          inst_fifo.sv         Ö¸Áîfifo¿ØÖÆÊı¾İÍ¨Â·F½×¶Î
-©¦          issue_ctrl.sv        2ÌõÖ¸Áî·¢Éä¿ØÖÆ
-©¦          mem_access.sv        ·Ã´æ×ª»»
-©¦          mycpu_top.v          cpu¶¥²ã
-©¦          pc_reg.sv            pc¼Ä´æÆ÷
-©¦          regfile.sv           Í¨ÓÃ¼Ä´æÆ÷¶Ñ
-©¦          
-©¸©¤testbench
-        mycpu_tb.v              ²âÊÔÎÄ¼ş£¬ĞŞ¸Ä²âÊÔµÄclk±ßÑØ³ö·¢
+â”‚  inst32_inst64.py             å°†32bitçš„inst_sram.coeè½¬ä¸º64bitçš„inst_sram_64.coe
+|  inst_sram_64.xci             inst_sram_64é…ç½®
+â”‚  readme.txt                   æ–‡ä»¶ç›®å½•è¯´æ˜
+â”‚  
+â”œâ”€rtl
+â”‚  â”‚  soc_lite_top.v            é¡¶å±‚æ–‡ä»¶ï¼Œä¿®æ”¹cpu_inst_wenã€cpu_inst_wdataã€cpu_inst_rdataçš„ä½å®½
+â”‚  â”‚  
+â”‚  â””â”€myCPU                      myCPUæºä»£ç æ–‡ä»¶
+â”‚          alu_master.v         masteråˆ†æ”¯çš„alu
+â”‚          alu_slave.sv         slaveåˆ†æ”¯çš„alu
+â”‚          branch_judge.sv      åˆ†æ”¯åˆ¤æ–­é€»è¾‘
+â”‚          cp0_reg.sv           CP0å¯„å­˜å™¨
+â”‚          datapath.v           æ•°æ®é€šè·¯
+â”‚          decoder.sv           è¯‘ç 
+â”‚          defines.vh           å®å®šä¹‰
+â”‚          div.v                é™¤æ³•æ¨¡å—
+â”‚          exception.sv         å¼‚å¸¸å› ç´ è§£æ
+â”‚          flopenr.v            è§¦å‘å™¨
+â”‚          forward_mux.sv       å‰æ¨é€‰æ‹©
+â”‚          forward_top.sv       å‰æ¨é¡¶å±‚
+â”‚          hazard.v             æ§åˆ¶å†’é™©å¤„ç†
+â”‚          hilo_reg.v           hiloå¯„å­˜å™¨
+â”‚          instdec.v            æŒ‡ä»¤asciiç¼–ç 
+â”‚          inst_diff.sv         2æ¡æŒ‡ä»¤è¯»å–æ§åˆ¶
+â”‚          inst_fifo.sv         æŒ‡ä»¤fifoæ§åˆ¶æ•°æ®é€šè·¯Fé˜¶æ®µ
+â”‚          issue_ctrl.sv        2æ¡æŒ‡ä»¤å‘å°„æ§åˆ¶
+â”‚          mem_access.sv        è®¿å­˜è½¬æ¢
+â”‚          mycpu_top.v          cpué¡¶å±‚
+â”‚          pc_reg.sv            pcå¯„å­˜å™¨
+â”‚          regfile.sv           é€šç”¨å¯„å­˜å™¨å †
+â”‚          
+â””â”€testbench
+        mycpu_tb.v              æµ‹è¯•æ–‡ä»¶ï¼Œä¿®æ”¹æµ‹è¯•çš„clkè¾¹è§¦å‡ºå‘
