@@ -1,8 +1,12 @@
 ## 文件目录说明
-2021-CquCOlab-src
+
+```txt
+2021CQUCOLAB
+│  datapath-design.svg         	数据通路设计简图
+│  design(simple).pdf			设计报告（简略版）
 │  inst32_inst64.py             将32bit的inst_sram.coe转为64bit的inst_sram_64.coe
 |  inst_sram_64.xci             inst_sram_64配置
-│  readme.txt                   文件目录说明
+│  readme.md                    文件目录说明
 │  
 ├─rtl
 │  │  soc_lite_top.v            顶层文件，修改cpu_inst_wen、cpu_inst_wdata、cpu_inst_rdata的位宽
@@ -33,3 +37,5 @@
 │          
 └─testbench
         mycpu_tb.v              测试文件，修改测试的clk边沿触发
+```
+

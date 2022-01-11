@@ -1,0 +1,40 @@
+卷 Data 的文件夹 PATH 列表
+卷序列号为 4EFE-420E
+D:.
+│  datapath-design.svg
+│  design(simple).pdf
+│  inst32_inst64.py
+│  inst_ram_64.xci
+│  log.txt
+│  readme.md
+│  
+├─rtl
+│  │  soc_lite_top.v
+│  │  
+│  └─myCPU
+│          alu_master.v
+│          alu_slave.sv
+│          branch_judge.sv
+│          cp0_reg.sv
+│          datapath.v
+│          decoder.sv
+│          defines.vh
+│          div.v
+│          exception.sv
+│          flopenr.v
+│          forward_mux.sv
+│          forward_top.sv
+│          hazard.v
+│          hilo_reg.v
+│          instdec.v
+│          inst_diff.sv
+│          inst_fifo.sv
+│          issue_ctrl.sv
+│          mem_access.sv
+│          mycpu_top.v
+│          pc_reg.sv
+│          regfile.sv
+│          
+└─testbench
+        mycpu_tb.v
+        
